@@ -10,14 +10,14 @@ class TestConsumer(JsonWebsocketConsumer):
         self.room_name = "test_room"
 
         async_to_sync(self.channel_layer.group_add)(
-            self.room_group_name,
+            self.room_name,
             self.channel_name
         )
         self.accept()
 
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(
-            self.room_group_name,
+            self.room_name,
             self.channel_name
         )
 
