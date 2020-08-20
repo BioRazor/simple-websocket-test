@@ -76,6 +76,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "prueba.users.apps.UsersConfig",
+    "prueba.ws_test.apps.Ws_testConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -305,3 +306,12 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/api/.*$"
 # Your stuff...
 # ------------------------------------------------------------------------------
+ASGI_APPLICATION = "prueba.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('redis', 6379)],
+        },
+    },
+}
