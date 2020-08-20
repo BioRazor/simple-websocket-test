@@ -22,9 +22,10 @@ class TestConsumer(JsonWebsocketConsumer):
         )
 
     def receive_json(self, content):
-        async_to_sync(self.channel_layer.group_send)(
-            self.group_name, {
-                'type': 'echo_message',
-                'product': content
-            }
-        )
+        self.send_json(content)
+        # async_to_sync(self.channel_layer.group_send)(
+        #     self.group_name, {
+        #         'type': 'echo_message',
+        #         'product': content
+        #     }
+        # )
